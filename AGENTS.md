@@ -36,7 +36,10 @@ Update the Python test alongside intentional changes to the transformation contr
 
 ## Deployment
 
-Source edits do not update the live web app automatically. Deploy a new version of the existing Apps Script web app after validating changes. If the app is embedded in Google Sites, refresh the host page after deployment.
+Source edits do not update the live web app automatically.
+1. Push local changes to Apps Script using `npx @google/clasp push`.
+2. Deploy a new version using `npx @google/clasp deploy --description "..."` or via the Apps Script Web Editor (**Deploy > Manage deployments > Edit > New version > Deploy**).
+3. If the app is embedded in Google Sites, refresh the host page after deployment.
 
 ## Local Planning Files
 

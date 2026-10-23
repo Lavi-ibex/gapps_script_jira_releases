@@ -1,6 +1,11 @@
-# Ibex Jira Releases Web App Guide
+# Ibex Jira Releases Web App
 
 A lightweight, secure, responsive, and themeable Google Apps Script web app for viewing and updating Ibex Jira release versions.
+
+- **Live Web App:** [Open Web App](https://script.google.com/a/macros/ibex-ai.com/s/AKfycbzmoYfAQQEVFAvfXqv1ASx7DWo3__scTuBPh5k3FLMrRuRiQr8RQWOY6MVGto-fjvgj/exec)
+- **GitHub Repository:** https://github.com/Lavi-ibex/google_apps_script_jira_releases
+- **Google Apps Script IDE:** [Project Editor](https://script.google.com/d/1WzW04E-Dbtj4ICURpLU07W2crfuZ3REn5l8SIEgWaHSn4UxQfL8CbAFX/edit)
+- **Script ID:** `1WzW04E-Dbtj4ICURpLU07W2crfuZ3REn5l8SIEgWaHSn4UxQfL8CbAFX`
 
 ---
 
@@ -20,43 +25,52 @@ A lightweight, secure, responsive, and themeable Google Apps Script web app for 
 
 ---
 
-## 2. Setup & Update Instructions
+## 2. Development & Deployment Workflow (clasp)
 
-### Step 1: Open Your Existing Apps Script Project
-1. Open [Google Apps Script](https://script.google.com/).
-2. Open your `Ibex Jira Releases Widget` project.
+This repository is connected directly to Google Apps Script via `.clasp.json`.
 
-### Step 2: Update Script and Template Files
-1. In `Code.gs`, replace its contents with the code from `Code.gs`.
-2. In `Index.html`, replace its contents with the code from `Index.html`.
+### Syncing Code with Clasp
+- **Push local changes to Google Apps Script:**
+  ```bash
+  npx @google/clasp push
+  ```
+- **Pull remote changes from Google Apps Script:**
+  ```bash
+  npx @google/clasp pull
+  ```
 
-### Step 3: Configure Jira Credentials (if not already set)
-1. In the Apps Script left navigation sidebar, click **Project Settings** (gear icon ⚙️).
-2. Under **Script Properties**, ensure you have:
+### Script Properties Setup (One-Time Setup)
+1. In the Apps Script project editor, click **Project Settings** (gear icon ⚙️).
+2. Under **Script Properties**, ensure the following properties are configured:
    - `JIRA_BASE_URL`: `https://ibex-ai.atlassian.net`
    - `JIRA_PROJECT_KEY`: `IBX`
    - `JIRA_USER_EMAIL`: `your.email@ibex-ai.com`
-   - `JIRA_API_TOKEN`: Your Atlassian API token
+   - `JIRA_API_TOKEN`: Your Atlassian API token (generated from [id.atlassian.com](https://id.atlassian.com/manage-profile/security/api-tokens))
 
-The Jira account identified by `JIRA_USER_EMAIL` must have permission to manage versions in the configured Jira project. Keep this account and its API token in Script Properties only.
+*(Note: The Jira account identified by `JIRA_USER_EMAIL` must have permission to manage versions in the configured Jira project. Keep this account and its API token in Script Properties only.)*
 
-### Step 4: Open the Live Dashboard
+### Deploying a New Version
+When code changes in `Code.gs` or `Index.html` are pushed, update the active Web App deployment:
 
-Use the existing web app URL:
+- **Via clasp CLI:**
+  ```bash
+  npx @google/clasp deploy --description "Description of updates"
+  ```
+- **Via Apps Script Web Editor:**
+  1. Open the [Project Editor](https://script.google.com/d/1WzW04E-Dbtj4ICURpLU07W2crfuZ3REn5l8SIEgWaHSn4UxQfL8CbAFX/edit).
+  2. Click **Deploy > Manage deployments** (top right).
+  3. Select the active Web App deployment from the list on the left.
+  4. Click the **Pencil (Edit)** icon at the top right of the modal.
+  5. Under **Version**, choose **New version**.
+  6. Click **Deploy**.
 
-https://script.google.com/a/macros/ibex-ai.com/s/AKfycbzmoYfAQQEVFAvfXqv1ASx7DWo3__scTuBPh5k3FLMrRuRiQr8RQWOY6MVGto-fjvgj/exec
+*(Note: The deployment URL remains constant across version updates. The direct web app serves the new version after deployment is updated. If the app is embedded elsewhere, refresh that host page after deploying.)*
 
-To view every description, select **Show all descriptions** to the left of the theme control. Select **Hide all descriptions** to collapse them again. To edit one description, select its **Show description**, select **Edit**, make the change, and select **Save description**. To change a release date, select the small **Edit** action in its date badge, choose a valid date, and select **Save date**. A release date cannot be cleared. Editing is available only to signed-in users in the `ibex-ai.com` domain.
-
-### Step 5: Deploy the New Web App Version
-When you update code in Apps Script, you **must update the active deployment**:
-1. At the top right of the Apps Script editor, click **Deploy > Manage deployments**.
-2. Select your active Web app deployment from the list on the left.
-3. Click the **Pencil (Edit)** icon at the top right of the modal.
-4. Under **Version**, select **New version**.
-5. Click **Deploy**.
-
-*(Note: The deployment URL remains the same. The direct web app serves the new version after the deployment is updated. If the app is embedded elsewhere, refresh that host page after deploying.)*
+### Dashboard Interactive Editing
+- **Show/Hide Descriptions:** Select **Show all descriptions** to expand all cards, or **Hide all descriptions** to collapse them.
+- **Edit Description:** Expand a card's description, click **Edit**, modify the text, and click **Save description**.
+- **Edit Release Date:** Click the **Edit** action in the release date badge, choose a valid date, and click **Save date**.
+*(Editing operations are restricted to signed-in users in the `ibex-ai.com` domain.)*
 
 ---
 
