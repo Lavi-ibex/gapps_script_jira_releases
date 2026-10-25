@@ -3,7 +3,7 @@
 A lightweight, secure, responsive, and themeable Google Apps Script web app for viewing and updating Ibex Jira release versions.
 
 - **Live Web App:** [Open Web App](https://script.google.com/a/macros/ibex-ai.com/s/AKfycbzmoYfAQQEVFAvfXqv1ASx7DWo3__scTuBPh5k3FLMrRuRiQr8RQWOY6MVGto-fjvgj/exec)
-- **GitHub Repository:** https://github.com/Lavi-ibex/google_apps_script_jira_releases
+- **GitHub Repository:** https://github.com/Lavi-ibex/gapps_script_jira_releases
 - **Google Apps Script IDE:** [Project Editor](https://script.google.com/d/1WzW04E-Dbtj4ICURpLU07W2crfuZ3REn5l8SIEgWaHSn4UxQfL8CbAFX/edit)
 - **Script ID:** `1WzW04E-Dbtj4ICURpLU07W2crfuZ3REn5l8SIEgWaHSn4UxQfL8CbAFX`
 
